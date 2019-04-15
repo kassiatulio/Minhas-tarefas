@@ -1,41 +1,40 @@
-$(document).ready(() => {
-  $(".delete").click((event) => {
-    // Obtém item da lista para deletar
-    const habit = $(event.target).parent()
+$(document).ready(function() {
 
-    // Obtém modal
-    const confirmationModal = $(".modal-deletation-confirm")
-    
-    // Abre janela de confirmação
-    confirmationModal.modal()
+  let lastCheckboxId = $(".card").length
 
-    // Adiciona função ao clicar em confirmar remoção
-    confirmationModal.find(".btn-confirm").click(() => {
-      confirmationModal.modal("hide")
-      habit.remove()
-    })
-  })
+  const modalAdd = $(".modal-add")
 
-  $(".btn-new-habit").click(() => {
-    const newHabitModal = $(".modal-new-habit")
+  const generateCheckboxId = () => {
+    return ++lastCheckboxId
+  }
+  
+ $(".btn-add").click(function() {
+  modalAdd.modal()
+ })
 
-    newHabitModal.modal()
+ $(".btn-save").click(function(){
+   const newTaskTitle = $(".task-title").val()
+   const newTaskDescription = $(".task-description").val()
+   
+  $(".container").append(`
+    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+      <div class="card-header">${newTaskTitle}<div class="check custom-control custom-checkbox">
+        <input type="checkbox" class="check custom-control-input" id="${generateCheckboxId()}">
+        <label class="custom-control-label"></label>
+      </div></div>
+      <div class="card-body">
+        <p class="card-text">${newTaskDescription}</p>
+      </div>
+    </div>
+  `)
+    modalAdd.modal("hide")
 
-    newHabitModal.find(".btn-confirm").click(() => {
-      const habitDescription = newHabitModal.find("input[name='description']").val()
-      const lastId = parseInt($(".habit-list li").last().attr("id"))
-      const nextId = lastId + 1
-
-      const excludeButton = $("<i></i>").addClass("action delete fas fa-trash")
-      const habitItem = $("<li></li>")
-        .attr("id", nextId)
-        .addClass("habit list-group-item")
-        .html(habitDescription)
-        .append(excludeButton)
-
-      $(".habit-list").append(habitItem)
-
-      newHabitModal.modal("hide")
-    })
-  })
+    $(".task-title").val("") 
+    $(".task-description").val("") 
+ })
+ 
+ //$(".check").click(function(){
+  //$(this).parent().parent().fadeTo(1000, 0.4);
 })
+
+});

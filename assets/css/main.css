@@ -1,4 +1,12 @@
-.habit .action {
+.container {
+  width: 100%;
+}
+
+.card {
+  float: left;
+  margin: 2em;
+}
+
+.check {
   float: right;
-  cursor: pointer;
 }
