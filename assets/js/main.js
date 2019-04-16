@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   let lastCheckboxId = $(".card").length
 
   const generateCheckboxId = () => {
@@ -9,47 +8,43 @@ $(document).ready(function() {
   const modalAdd = $(".modal-add")
   const modalRemove = $(".modal-remove")
 
-  
-  $(".trash-icon").click(function(event) {
+  $(document).on("click", ".trash-icon", function(event) {
     modalRemove.modal()
-    const cardRemove = event.target.parentNode
-    console.log(cardRemove)
+    const cardRemove = $(event.target).parent().parent()
+    
+    $(".btn-remove").click(function() {
+      cardRemove.remove()
+      modalRemove.modal("hide")
+    })  
   })
 
- 
   $(".btn-add").click(function() {
     modalAdd.modal()
   })
-
 
   $(".btn-save").click(function() {
     const newTaskTitle = $(".task-title").val()
     const newTaskDescription = $(".task-description").val()
    
-  $(".container").append(`
-    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-      <div class="card-header">${newTaskTitle}<div class="check custom-control custom-checkbox">
-        <input type="checkbox" class="check custom-control-input" id="${generateCheckboxId()}">
-        <label class="custom-control-label"></label>
-      </div></div>
-      <div class="card-body">
-        <p class="card-text">${newTaskDescription}</p>
-        <i class="trash-icon far fa-trash-alt"></i>
+    $(".container").append(`
+      <div class="card text-white bg-primary mb-3" id="card-${generateCheckboxId()}" style="max-width: 18rem;">
+        <div class="card-header"><i class="trash-icon far fa-trash-alt"></i>${newTaskTitle}<div class="check custom-control custom-checkbox">
+          <input type="checkbox" class="check custom-control-input">
+          <label class="custom-control-label"></label>
+        </div></div>
+        <div class="card-body">
+          <p class="card-text">${newTaskDescription}</p>          
+        </div>
       </div>
-    </div>
-  `)
-  modalAdd.modal("hide")
+    `)
+    modalAdd.modal("hide")
 
-  $(".task-title").val("") 
-  $(".task-description").val("") 
+    $(".task-title").val("") 
+    $(".task-description").val("") 
   })
 
-  $(".btn-remove").click(function() {
-    
-  })  
- 
-  $(".check").click(function(){
-  $(this).parent().parent().fadeTo(1000, 0.4);
-})
 
+  $(".check").click(function(){
+    $(this).parent().parent().fadeTo(1000, 0.4);
+  })
 });
