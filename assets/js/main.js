@@ -44,7 +44,16 @@ $(document).ready(function() {
   })
 
 
-  $(".check").click(function(){
-    $(this).parent().parent().fadeTo(1000, 0.4);
+  $(document).on("click", ".check", function(element){
+    console.log(event)
+    if ( $(".check").is(":checked") ) {
+      $(this).parent().parent().fadeTo(1000, 1)
+    } else {
+      $(this).parent().parent().fadeTo(1000, 0.5)
+      console.log("teste")
+    }
   })
+    
+
+
 });
