@@ -22,12 +22,33 @@ $(document).ready(function() {
     modalAdd.modal()
   })
 
+  const colorCard = [
+    "primary", 
+    "secondary", 
+    "success", 
+    "danger", 
+    "warning", 
+    "info", 
+    "dark"
+  ]
+
+  let currentColorIndex = 1;
+
+  const nextColor = () => {
+    if (currentColorIndex == (colorCard.length - 1)) {
+      currentColorIndex = -1;
+    }    
+    return colorCard[++currentColorIndex];
+  }
+  
+
+
   $(".btn-save").click(function() {
     const newTaskTitle = $(".task-title").val()
     const newTaskDescription = $(".task-description").val()
    
     $(".container").append(`
-      <div class="card text-white bg-primary mb-3" id="card-${generateCheckboxId()}" style="max-width: 18rem;">
+      <div class="card text-white bg-${nextColor()} mb-3" id="card-${generateCheckboxId()}" style="max-width: 18rem;">
         <div class="card-header"><i class="trash-icon far fa-trash-alt"></i>${newTaskTitle}
           <div class="check form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -39,15 +60,13 @@ $(document).ready(function() {
         </div>
       </div>
     `)
+
     modalAdd.modal("hide")
 
     $(".task-title").val("") 
     $(".task-description").val("") 
   })
-
-  const colorCard = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]
-
-
+  
   $(document).on("click", ".check", function(event){
     const isChecked = event.target.checked
         if (isChecked === true) {
