@@ -16,3 +16,7 @@ body {
 .trash-icon {
   margin-right: 1em;
 }
+
+.trash-icon:hover, .check:hover {
+  cursor: pointer;
+}

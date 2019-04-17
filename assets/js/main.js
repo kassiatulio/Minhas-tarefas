@@ -28,10 +28,12 @@ $(document).ready(function() {
    
     $(".container").append(`
       <div class="card text-white bg-primary mb-3" id="card-${generateCheckboxId()}" style="max-width: 18rem;">
-        <div class="card-header"><i class="trash-icon far fa-trash-alt"></i>${newTaskTitle}<div class="check custom-control custom-checkbox">
-          <input type="checkbox" class="check custom-control-input">
-          <label class="custom-control-label"></label>
-        </div></div>
+        <div class="card-header"><i class="trash-icon far fa-trash-alt"></i>${newTaskTitle}
+          <div class="check form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1"></label>
+          </div>
+        </div>
         <div class="card-body">
           <p class="card-text">${newTaskDescription}</p>          
         </div>
@@ -53,6 +55,8 @@ $(document).ready(function() {
       console.log("teste")
     }
   })
+
+  
     
 
 
