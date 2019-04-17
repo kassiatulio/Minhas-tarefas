@@ -32,7 +32,7 @@ $(document).ready(function() {
     "dark"
   ]
 
-  let currentColorIndex = 1;
+  let currentColorIndex = 5;
 
   const nextColor = () => {
     if (currentColorIndex == (colorCard.length - 1)) {
