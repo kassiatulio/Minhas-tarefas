@@ -45,19 +45,17 @@ $(document).ready(function() {
     $(".task-description").val("") 
   })
 
+  const colorCard = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]
 
-  $(document).on("click", ".check", function(element){
-    console.log(event)
-    if ( $(".check").is(":checked") ) {
-      $(this).parent().parent().fadeTo(1000, 1)
-    } else {
-      $(this).parent().parent().fadeTo(1000, 0.5)
-      console.log("teste")
+
+  $(document).on("click", ".check", function(event){
+    const isChecked = event.target.checked
+        if (isChecked === true) {
+        $(this).parent().parent().fadeTo(1000, 0.5)
+        } else {
+        $(this).parent().parent().fadeTo(1000, 1)
     }
   })
-
-  
-    
 
 
 });
