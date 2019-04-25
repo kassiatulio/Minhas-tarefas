@@ -1,13 +1,12 @@
 $(document).ready(function() {
   let lastCheckboxId = $(".card").length
-
+  const modalAdd = $(".modal-add")
+  const modalRemove = $(".modal-remove")
   const generateCheckboxId = () => {
     return ++lastCheckboxId
   }
 
-  const modalAdd = $(".modal-add")
-  const modalRemove = $(".modal-remove")
-
+  //REMOVE CARD
   $(document).on("click", ".trash-icon", function(event) {
     modalRemove.modal()
     const cardRemove = $(event.target).parent().parent()
@@ -18,30 +17,28 @@ $(document).ready(function() {
     })  
   })
 
-  $(".btn-add").click(function() {
-    modalAdd.modal()
-  })
-
-  const colorCard = [
-    "primary", 
-    "secondary", 
-    "success", 
-    "danger", 
-    "warning", 
-    "info", 
-    "dark"
-  ]
-
-  let currentColorIndex = 5;
-
+  //ADICIONA CARD
   const nextColor = () => {
+    const colorCard = [
+      "primary", 
+      "secondary", 
+      "success", 
+      "danger", 
+      "warning", 
+      "info", 
+      "dark"
+    ] 
+
+    let currentColorIndex = 5;
     if (currentColorIndex == (colorCard.length - 1)) {
       currentColorIndex = -1;
     }    
     return colorCard[++currentColorIndex];
   }
   
-
+  $(".btn-add").click(function() {
+    modalAdd.modal()
+  })
 
   $(".btn-save").click(function() {
     const newTaskTitle = $(".task-title").val()
@@ -66,7 +63,9 @@ $(document).ready(function() {
     $(".task-title").val("") 
     $(".task-description").val("") 
   })
-  
+
+
+//EFEITO CHEKED CARD  
   $(document).on("click", ".check", function(event){
     const isChecked = event.target.checked
         if (isChecked === true) {
